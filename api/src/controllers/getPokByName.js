@@ -1,11 +1,26 @@
 const axios = require('axios');
-
+const { Pokemon, Type } = require('../db')
 
 const URL = 'https://pokeapi.co/api/v2/pokemon/';
 
 const getPokByName = async (req, res) => {
     try {
         const { nombre } = req.query;
+
+
+        const pokemon = await Pokemon.findOne({
+            where:{
+                name: nombre
+            },
+            include:{
+                model: Type,
+                through:'pokemon_type',
+            }
+        });
+
+        if(pokemon){
+            return res.status(200).json(pokemon);
+        }
 
         const lowerName = nombre.toLowerCase()
         const { data } = await axios.get(`${URL}/${lowerName}`)
@@ -31,7 +46,7 @@ const getPokByName = async (req, res) => {
             return res.status(200).json(pokemon)
         }
     } catch (error) {
-        return res.status(500).send('Hubo un error al procesar la solicitud')
+        return res.status(500).send(`El pokemon con ese nombre no existe`)
     }
 };
 

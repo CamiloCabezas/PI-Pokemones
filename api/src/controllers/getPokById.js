@@ -1,10 +1,26 @@
 const axios = require('axios');
+const{ Pokemon, Type} = require('../db')
+
 
 const URL = 'https://pokeapi.co/api/v2/pokemon/';
 
 const getPokById = async (req, res) => {
     try {
         const { idPokemon } = req.params;
+
+    // Intentar buscar el Pokémon en la base de datos por su ID
+    const pokemon = await Pokemon.findByPk(idPokemon, {
+        include: {
+          model: Type,
+          through: 'pokemon_type',
+        },
+      });
+  
+      if (pokemon) {
+        // Si se encuentra el Pokémon en la base de datos, enviarlo como respuesta
+        return res.status(200).json(pokemon);
+      }
+  
 
         const { data } = await axios.get(`${URL}/${idPokemon}`)
 

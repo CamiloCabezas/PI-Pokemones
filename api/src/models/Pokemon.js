@@ -34,11 +34,11 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull:false,
     },
-    high:{
+    height:{
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    wheight:{
+    weight:{
       type: DataTypes.INTEGER,
       allowNull: false,
     }

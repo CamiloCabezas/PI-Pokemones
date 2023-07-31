@@ -4,7 +4,7 @@ const URL = 'https://pokeapi.co/api/v2/pokemon/';
 
 const getPokemons = async (req, res) => {
     try {
-        const { data } = await axios.get(`${URL}`);
+        const { data } = await axios.get(`${URL}?limit=80`);
         const { results } = data;
 
         const pokemonsDetails = await Promise.all(results.map(async (pok) => {
@@ -31,7 +31,7 @@ const getPokemons = async (req, res) => {
             if (!name) throw Error(`Algo salio mal`);
         }));
 
-
+        console.log(pokemonsDetails.length)
         return res.status(200).json(pokemonsDetails);
     } catch (error) {
         return res.status(400).send(error.message);
