@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Pokemon, Type } = require('../db')
+const { Pokemon, Type } = require('../db');
 
 const URL = 'https://pokeapi.co/api/v2/pokemon/';
 
@@ -7,29 +7,28 @@ const getPokByName = async (req, res) => {
     try {
         const { nombre } = req.query;
 
-
         const pokemon = await Pokemon.findOne({
-            where:{
-                name: nombre
+            where: {
+                name: nombre,
             },
-            include:{
+            include: {
                 model: Type,
-                through:'pokemon_type',
-            }
+                through: 'pokemon_type',
+            },
         });
 
-        if(pokemon){
+        if (pokemon) {
             return res.status(200).json(pokemon);
         }
 
-        const lowerName = nombre.toLowerCase()
-        const { data } = await axios.get(`${URL}/${lowerName}`)
+        const lowerName = nombre.toLowerCase();
+        const { data } = await axios.get(`${URL}/${lowerName}`);
 
-        if(!data){
-            return res.status(404).send(`El pokemon con el nombre ${nombre} no existe`)
+        if (!data) {
+            return res.status(404).send(`El pokemon con el nombre ${nombre} no existe`);
         }
 
-        const { id, name, sprites, stats, weight, height } = data
+        const { id, name, sprites, stats, weight, height, types } = data;
 
         if (id && name) {
             const pokemon = {
@@ -42,13 +41,15 @@ const getPokByName = async (req, res) => {
                 speed: stats[5] ? stats[5].base_stat : null,
                 height: height ? height : null,
                 weight: weight ? weight : null,
+                types: types.map((typ) => typ.type.name).join(','),
             };
-            return res.status(200).json(pokemon)
+            return res.status(200).json(pokemon);
         }
     } catch (error) {
-        return res.status(500).send(`El pokemon con ese nombre no existe`)
+        return res.status(500).send(`El pokemon con ese nombre no existe`);
     }
 };
+
 
 
 

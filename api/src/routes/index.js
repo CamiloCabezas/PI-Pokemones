@@ -2,6 +2,7 @@ const { getPokemons } = require('../controllers/getPokemons');
 const { getPokById } = require('../controllers/getPokById');
 const { getPokByName } = require('../controllers/getPokByName');
 const { createPokemon } =  require('../controllers/createPokemon');
+const { getTypes } = require('../controllers/getTypes');
 const express = require('express');
 const router = express.Router();
 // Importar todos los routers;
@@ -20,6 +21,8 @@ router.get('/pokemons',(req, res ) => {
 router.get('/pokemons/:idPokemon',getPokById)
 
 router.post('/pokemons', createPokemon)
+
+router.get('/types', getTypes);
 
 
 
