@@ -34,7 +34,7 @@ const getPokByName = async (req, res) => {
             const pokemon = {
                 id,
                 name,
-                image: sprites.front_default,
+                image:  sprites.other.dream_world.front_default,
                 hp: stats[0].base_stat,
                 attack: stats[1].base_stat,
                 defense: stats[2].base_stat,

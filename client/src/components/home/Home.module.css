@@ -1,0 +1,21 @@
+/* Home.module.css */
+.pokemonGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* Espacio entre las tarjetas */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+  }
+  
+  .cardContainer {
+    width: 300px; /* Ancho fijo para mostrar 4 por fila con espaciado */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+  }
+
+.cardImage {
+    max-width: 100%;
+    height: auto;
+  }
+  
+
+   

@@ -5,20 +5,20 @@ const URL = 'https://pokeapi.co/api/v2/pokemon/';
 
 const getPokemons = async (req, res) => {
     try {
-        const { data } = await axios.get(`${URL}?limit=80`);
+        const { data } = await axios.get(`${URL}?limit=60`);
         const { results } = data;
 
         const pokemonsDetails = await Promise.all(results.map(async (pok) => {
             const { data } = await axios.get(pok.url);
 
             const { name, sprites, stats, weight, height, types } = data;
-            const idPokemon = parseInt(pok.url.split('/').slice(-2, -1)[0]);
+            const id = parseInt(pok.url.split('/').slice(-2, -1)[0]);
 
             if (name) {
                 const pokemon = {
-                    idPokemon,
+                    id,
                     name,
-                    image: sprites.front_default,
+                    image: sprites.other.dream_world.front_default,
                     hp: stats[0].base_stat,
                     attack: stats[1].base_stat,
                     defense: stats[2].base_stat,

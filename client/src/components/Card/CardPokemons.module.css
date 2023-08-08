@@ -1,0 +1,53 @@
+/* CardPokemons.module.css */
+
+.tarjeta {
+  border: 1px solid black;
+  border-radius: 8px;
+  margin: 16px;
+  background-color: #e84545;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: 0.5s;
+  width: 300px; 
+  height: 200px;
+}
+
+.tarjeta:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+ .pokemonImage {
+  border: 3px solid black;
+  border-radius: 8px;
+  padding: 0.5em;
+  flex: 1; /* Ocupa todo el espacio disponible */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente la imagen */
+  align-items: flex-start; /* Alinea la imagen arriba del contenedor */
+  overflow: hidden; /* Evita que la imagen se desborde */
+  background-color: white;
+}
+
+.pokemonImage img {
+  width: 100%; /* La imagen se ajusta al ancho del contenedor */
+  height: 100%; /* La imagen se ajusta al alto del contenedor */
+  object-fit: contain; /* La imagen se ajusta manteniendo su proporción */
+}
+
+
+
+.circulo {
+  width: 20px; /* Tamaño del círculo */
+  height: 20px;
+  background-color: white;
+  border: 4px solid black; /* Borde negro */
+  border-radius: 50%; /* Hace que sea un círculo */
+  position: absolute; /* Posicionamiento absoluto */
+  top: calc(45% + 20px); /* Lo coloca un poco más abajo */
+  left: 50%; /* Lo coloca en la mitad horizontal */
+  transform: translate(-50%, -50%); /* Centra el círculo */
+  z-index: 2; /* Asegura que esté por encima de otras capas */
+}

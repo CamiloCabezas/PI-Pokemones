@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./6bafa2f5ea21f6b1a79237d111fbedbf.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh; /* Ajusta el alto de la imagen al 100% del alto de la pantalla */
+  width: 100vw; /* Ajusta el ancho de la imagen al 100% del ancho de la pantalla */
 }
 
 code {
