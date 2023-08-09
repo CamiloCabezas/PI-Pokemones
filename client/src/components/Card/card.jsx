@@ -15,8 +15,16 @@ const CardPokemons = ({ id, name, image, types }) => {
         <div className={styles.circulo}></div>
         <div>
         <p className={styles.pokemonName}>
-          <Link to={`/detail/${id}`}>{name}</Link>
-        </p>
+                <Link
+                    to={`/detail/${id}`}
+                    className={`${styles.linkStyle}`}
+                >
+                    <button className={styles.button}>
+                        {name}
+                        <span className={styles.button_top}></span>
+                    </button>
+                </Link>
+            </p>
         <p className={styles.pokemonTypes}>
           <strong>Types:</strong> {types}
         </p>
