@@ -1,8 +1,6 @@
 import './App.css';
 
-import axios from "axios"
-import { Routes, Route, useLocation } from 'react-router-dom'; 
-import { useState, useEffect } from "react"
+import { Routes, Route, useLocation } from 'react-router-dom';
 import LandingPage from './components/landing/landing';
 import CardsPokemons from './components/home/home';
 import Detail from './components/Detail/detail';
@@ -44,7 +42,7 @@ function App() {
 
   // const tohome = async () => {
   //   try {
-  //     setCharactersByName([]); 
+  //     console.log('hola');
   //   } catch (error) {
   //     alert('salio algo mal');
   //   }

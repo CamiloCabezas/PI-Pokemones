@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getPokeByName, claenState } from "../../redux/actions/actions";
+import { getPokeByName, claenState, getAllPokemons } from "../../redux/actions/actions";
 import styles from './SearchBar.module.css';
 
-const SearchBar = ({ onSearch, tohome }) => {
+const SearchBar = () => {
+
   const dispatch = useDispatch();
   const [nombre, setNombre] = useState('');
 
   const handleChange = (event) => {
     setNombre(event.target.value);
   };
+
+  const tohome = () => {
+    dispatch(claenState())
+    dispatch(getAllPokemons())
+  }
 
   return (
     <div className={`${styles.nav} ${styles.customSearchBar}`}>
@@ -33,7 +39,7 @@ const SearchBar = ({ onSearch, tohome }) => {
       <div className={styles.search}>
         <Link
           onClick={() => {
-            dispatch(claenState());
+            // dispatch(claenState());
             dispatch(getPokeByName(nombre));
             setNombre('');
           }}
@@ -48,7 +54,7 @@ const SearchBar = ({ onSearch, tohome }) => {
         </Link>
       </div>
       <div className={styles.home}>
-        <Link onClick={() => { tohome(); }} to={'/home'}>
+        <Link to={'/home'} onClick={() => { tohome() }} >
           <button className={styles.homeButton} alt="home">
             <i>H</i>
             <i>o</i>

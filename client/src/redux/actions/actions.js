@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL_POKEMONS, GET_BY_NAME, CLEAN_STATE } from '../action-types/action-types';
+import { GET_ALL_POKEMONS, GET_BY_NAME, CLEAN_STATE, ORDER_POKEMONS, TYPES_POKEMONS } from '../action-types/action-types';
 
 export const getAllPokemons = () => {
     return async function(dispatch) {
@@ -43,4 +43,18 @@ export const claenState = () => {
         type: CLEAN_STATE,
         payload: {}
     })
+}
+
+export const orderPokemons = (order) => {
+    return{
+        type : ORDER_POKEMONS,
+        payload : order
+    }
+}
+
+export const typesPokemons = (type) => {
+    return{
+        type: TYPES_POKEMONS,
+        payload: type
+    }
 }
