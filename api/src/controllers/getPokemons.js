@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
 
 const URL = 'https://pokeapi.co/api/v2/pokemon/';
 
@@ -33,11 +33,32 @@ const getPokemons = async (req, res) => {
             if (!name) throw Error(`Algo salio mal`);
         }));
 
-        const DbPokemons = await Pokemon.findAll()
+        const DbPokemons = await Pokemon.findAll({
+            include: Type
+        });
 
-        const allPokemons = [...pokemonsDetails,...DbPokemons]
 
+        const pokemonDB = DbPokemons.map((pokemon) =>{
+            const types = pokemon.Types.map((type) => type.name)
+            return { 
+                id: pokemon.id,
+                name : pokemon.name,
+                image : pokemon.image,
+                hp: pokemon.hp,
+                attack : pokemon.attack,
+                defense : pokemon.defense,
+                speed : pokemon.speed,
+                height : pokemon.height,
+                weight : pokemon.weight,
+                types : types.join(',')
+            }
+        })
+        
         console.log(DbPokemons)
+
+        const allPokemons = [...pokemonsDetails,...pokemonDB]
+
+        
         return res.status(200).json(allPokemons);
     } catch (error) {
         return res.status(400).send(error.message);

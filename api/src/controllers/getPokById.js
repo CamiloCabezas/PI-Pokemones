@@ -8,18 +8,33 @@ const getPokById = async (req, res) => {
     try {
         const { idPokemon } = req.params;
 
-    // Intentar buscar el Pokémon en la base de datos por su ID
-    const pokemon = await Pokemon.findByPk(idPokemon, {
-        include: {
-          model: Type,
-          through: 'pokemon_type',
-        },
-      });
-  
-      if (pokemon) {
-        // Si se encuentra el Pokémon en la base de datos, enviarlo como respuesta
-        return res.status(200).json(pokemon);
-      }
+        if(idPokemon.length > 3) {
+                // Intentar buscar el Pokémon en la base de datos por su ID
+        const pokemon = await Pokemon.findByPk(idPokemon, {
+            include: Type
+        });
+
+
+
+        const pokemonDB = {
+            id: pokemon.id,
+            name : pokemon.name,
+            image : pokemon.image,
+            hp: pokemon.hp,
+            attack : pokemon.attack,
+            defense : pokemon.defense,
+            speed : pokemon.speed,
+            height : pokemon.height,
+            weight : pokemon.weight,
+            types : pokemon.Types.map((type) => type.name).join(',')
+        }
+        console.log(pokemon.Types.map((type) => type.name))
+    
+        if (pokemonDB) {
+            // Si se encuentra el Pokémon en la base de datos, enviarlo como respuesta
+            return res.status(200).json(pokemonDB);
+        }
+        }
   
 
         const { data } = await axios.get(`${URL}/${idPokemon}`)

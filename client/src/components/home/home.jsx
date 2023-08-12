@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import  {getAllPokemons, orderPokemons, typesPokemons}  from "../../redux/actions/actions";
+import  {getAllPokemons, orderPokemons, typesPokemons, getPokemonsByOrigin, claenState}  from "../../redux/actions/actions";
 import CardPokemons from "../Card/card";
 import styles from './Home.module.css';
 import axios from 'axios'
@@ -9,7 +9,7 @@ const CardsPokemons = () => {
     const [ types, setTypes ] = useState([])
 
     const dispatch = useDispatch();
-    const pokemons = useSelector(state => state.allPokemons)
+    const pokemons = useSelector(state => state.filteredPokemons)
     const pokemon = useSelector(state => state.pokemon)
 
     const getTypes = async () => {
@@ -31,11 +31,16 @@ const CardsPokemons = () => {
     const rederedData =  pokemon.id ? [pokemon] : pokemons
 
     const handlerOrder = (event) => {
-        dispatch(orderPokemons(event.target.value))
+        dispatch(orderPokemons(event.target.value));
     }
 
     const handlerType = (event) => {
-        dispatch(typesPokemons(event.target.value))
+        dispatch(typesPokemons(event.target.value));
+    }
+
+    const handlerOrigin = (event) => {
+        dispatch(claenState)
+        dispatch(getPokemonsByOrigin(event.target.value));
     }
 
     return (
@@ -47,12 +52,18 @@ const CardsPokemons = () => {
             </select>
 
             <select onChange={handlerType}>
+                <option value="all">All</option>
             {
                 types.map((type, index) => (
                     <option key={index}value={type}>{type}</option>
                 ))
             }
                         
+            </select>
+
+            <select onChange={handlerOrigin}>
+                <option value="api">Api</option>
+                <option value="data_base">Data Base</option>
             </select>
             </div>
 

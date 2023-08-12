@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const { v4: uuidv4 } = require('uuid'); // Importa la función v4 de uuid para generar UUIDs
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = (sequelize) => {
   sequelize.define('pokemon', {
@@ -41,6 +41,8 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     }
+  },{
+    timestamps : false
   });
 };
 

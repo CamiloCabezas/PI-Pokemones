@@ -18,7 +18,7 @@ const createPokemon = async (req, res) => {
     const typesArray = types.split(',').map((type) => type.trim());
     const typeObjects = await Promise.all(typesArray.map((typeName) => Type.findOrCreate({ where: { name: typeName } })));
     const typesInDb = typeObjects.map((typeObject) => typeObject[0]);
-
+    
     // Crear el nuevo Pokémon en la base de datos
     const newPokemon = await Pokemon.create({
         name,
@@ -30,7 +30,7 @@ const createPokemon = async (req, res) => {
         height, 
         weight
     });
-
+    
     // Asociar los tipos al nuevo Pokémon
     if (typesInDb.length > 0) {
       await newPokemon.setTypes(typesInDb);

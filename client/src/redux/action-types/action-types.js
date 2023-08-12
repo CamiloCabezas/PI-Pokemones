@@ -1,5 +1,6 @@
 export const GET_ALL_POKEMONS = 'GET_ALL_POKEMONS';
-export const GET_BY_NAME =  'GET_BY_NAME'
-export const CLEAN_STATE = 'CLEAN_STATE'
-export const ORDER_POKEMONS = 'ORDER_POKEMONS'
-export const TYPES_POKEMONS = 'TYPES_POKEMONS'
+export const GET_BY_NAME =  'GET_BY_NAME';
+export const CLEAN_STATE = 'CLEAN_STATE';
+export const ORDER_POKEMONS = 'ORDER_POKEMONS';
+export const TYPES_POKEMONS = 'TYPES_POKEMONS';
+export const POKEMONS_ORIGIN = 'POKEMONS_ORIGIN';
