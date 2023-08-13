@@ -9,7 +9,7 @@ import {
   
   const initialState = {
     allPokemons: [],
-    filteredPokemons: [], // Agrega un nuevo estado para los Pokémon filtrados
+    filteredPokemons: [], 
     pokemon: {},
   };
   
@@ -19,7 +19,7 @@ import {
         return {
           ...state,
           allPokemons: action.payload,
-          filteredPokemons: action.payload, // Inicializa los Pokémon filtrados con todos los Pokémon
+          filteredPokemons: action.payload,
         };
       case GET_BY_NAME:
         return {
@@ -29,11 +29,11 @@ import {
       case CLEAN_STATE:
         return {
           allPokemons: [],
-          filteredPokemons: [], // Limpia también los Pokémon filtrados
+          filteredPokemons: [], 
           pokemon: {},
         };
       case ORDER_POKEMONS:
-        const allCharatersCopy = [...state.filteredPokemons]; // Cambia a filteredPokemons
+        const allCharatersCopy = [...state.filteredPokemons]; 
         return {
           ...state,
           filteredPokemons:
@@ -45,7 +45,7 @@ import {
         if (action.payload === "all") {
           return {
             ...state,
-            filteredPokemons: state.allPokemons, // Mostrar todos los Pokémon
+            filteredPokemons: state.allPokemons, 
           };
         } else {
           const typePokemons = state.allPokemons.filter(
@@ -53,7 +53,7 @@ import {
           );
           return {
             ...state,
-            filteredPokemons: typePokemons, // Mostrar solo los Pokémon del tipo seleccionado
+            filteredPokemons: typePokemons, 
           };
         }
       case POKEMONS_ORIGIN:
@@ -72,7 +72,7 @@ import {
             }
 
       default:
-        return state;
+       { return state;}
     }
   };
   

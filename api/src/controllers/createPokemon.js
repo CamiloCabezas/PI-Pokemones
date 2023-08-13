@@ -14,11 +14,10 @@ const createPokemon = async (req, res) => {
       throw new Error('El personaje ya existe');
     }
 
-    // Obtener o crear los objetos de tipo (types) en la base de datos
-    const typesArray = types.split(',').map((type) => type.trim());
+    const typesArray = Array.isArray(types) ? types : types.split(',').map((type) => type.trim());
     const typeObjects = await Promise.all(typesArray.map((typeName) => Type.findOrCreate({ where: { name: typeName } })));
     const typesInDb = typeObjects.map((typeObject) => typeObject[0]);
-    
+
     // Crear el nuevo Pokémon en la base de datos
     const newPokemon = await Pokemon.create({
         name,
