@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import  {getAllPokemons, orderPokemons, typesPokemons, getPokemonsByOrigin, claenState}  from "../../redux/actions/actions";
+import  {getAllPokemons, orderPokemons, typesPokemons, getPokemonsByOrigin, claenState, getPokemonByAlpha}  from "../../redux/actions/actions";
 import CardPokemons from "../Card/card";
 import styles from './Home.module.css';
 import axios from 'axios'
@@ -38,6 +38,10 @@ const CardsPokemons = () => {
         dispatch(typesPokemons(event.target.value));
     }
 
+    const handlerAlphaOrder = (event) => {
+        dispatch(getPokemonByAlpha(event.target.value))
+    }
+
     const handlerOrigin = (event) => {
         dispatch(claenState)
         dispatch(getPokemonsByOrigin(event.target.value));
@@ -47,8 +51,13 @@ const CardsPokemons = () => {
         <div>
             <div>
             <select onChange={handlerOrder}>
-                <option value="A">Ascendente</option>
-                <option value="D">Descendente</option>
+                <option value="A">Up Attack</option>
+                <option value="D">Down Attack</option>
+            </select>
+
+            <select onChange={handlerAlphaOrder}>
+                <option value="A-Z">A-Z</option>
+                <option value="Z-A">Z-A</option>
             </select>
 
             <select onChange={handlerType}>

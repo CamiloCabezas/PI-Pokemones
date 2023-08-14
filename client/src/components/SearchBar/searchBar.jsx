@@ -20,6 +20,11 @@ const SearchBar = () => {
 
   return (
     <div className={`${styles.nav} ${styles.customSearchBar}`}>
+      <div>
+      <Link to={'/create'} className={styles.createLink}>
+        Create
+      </Link>
+      </div>
       <div className={styles.barra}>
         <div className={styles.inputContainer}>
           <input

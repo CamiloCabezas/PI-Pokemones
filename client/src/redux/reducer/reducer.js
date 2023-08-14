@@ -4,8 +4,11 @@ import {
     GET_BY_NAME,
     ORDER_POKEMONS,
     TYPES_POKEMONS,
-    POKEMONS_ORIGIN
+    POKEMONS_ORIGIN,
+    POKEMONS_ALPHA
   } from "../action-types/action-types";
+
+
   
   const initialState = {
     allPokemons: [],
@@ -13,6 +16,8 @@ import {
     pokemon: {},
   };
   
+  
+
   const reducer = (state = initialState, action) => {
     switch (action.type) {
       case GET_ALL_POKEMONS:
@@ -38,8 +43,9 @@ import {
           ...state,
           filteredPokemons:
             action.payload === "A"
-              ? allCharatersCopy.sort((a, b) => a.attack - b.attack)
-              : allCharatersCopy.sort((a, b) => b.attack - a.attack),
+              ? allCharatersCopy.sort((a, b) => b.attack - a.attack)
+              : allCharatersCopy.sort((a, b) => a.attack - b.attack),
+              
         };
       case TYPES_POKEMONS:
         if (action.payload === "all") {
@@ -70,6 +76,23 @@ import {
                 filteredPokemons: otherOriginPokemon,
               };
             }
+
+        case POKEMONS_ALPHA:
+        
+            const allCopy = [...state.filteredPokemons]; 
+            return {
+              ...state,
+              filteredPokemons:
+                action.payload === "A-Z"
+                ? allCopy.sort((a, b) => a.name.localeCompare(b.name))
+                : allCopy.sort((a, b) => b.name.localeCompare(a.name)),
+  };
+        
+        case 'POKEMONS_ERROR':
+          window.alert(action.payload)
+          return {
+            ...state,
+          }
 
       default:
        { return state;}

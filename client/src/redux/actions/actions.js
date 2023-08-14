@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL_POKEMONS, GET_BY_NAME, CLEAN_STATE, ORDER_POKEMONS, TYPES_POKEMONS, POKEMONS_ORIGIN} from '../action-types/action-types';
+import { GET_ALL_POKEMONS, GET_BY_NAME, CLEAN_STATE, ORDER_POKEMONS, POKEMONS_ALPHA, TYPES_POKEMONS, POKEMONS_ORIGIN} from '../action-types/action-types';
 
 export const getAllPokemons = () => {
     return async function(dispatch) {
@@ -30,8 +30,8 @@ export const getPokeByName = (nombre) => {
             })   
         } catch (error) {
             dispatch({
-                type: 'FETCH_POKEMONS_ERROR',
-                payload: error.message
+                type: 'POKEMONS_ERROR',
+                payload: `We do not found a pokemon ${nombre}`
             })
         }
     }
@@ -63,5 +63,12 @@ export const getPokemonsByOrigin = (origin) => {
     return {
         type : POKEMONS_ORIGIN,
         payload : origin
+    }
+}
+
+export const getPokemonByAlpha = (order) => {
+    return{
+        type : POKEMONS_ALPHA,
+        payload : order
     }
 }
