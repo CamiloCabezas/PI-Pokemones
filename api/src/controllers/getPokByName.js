@@ -18,7 +18,20 @@ const getPokByName = async (req, res) => {
         });
 
         if (pokemon) {
-            return res.status(200).json(pokemon);
+            const pokemondb = {
+                id:pokemon.id,
+                name: pokemon.name,
+                image : pokemon.image,
+                hp: pokemon.hp,
+                attack: pokemon.attack,
+                defense: pokemon.defense,
+                speed: pokemon.speed,
+                height: pokemon.height,
+                weight: pokemon.weight,
+                types: pokemon.Types.map((type) => type.name).join(',')
+            }
+            console.log(pokemon.Types.map((type) => type.name).join(','))
+            return res.status(200).json(pokemondb);
         }
 
         const lowerName = nombre.toLowerCase();

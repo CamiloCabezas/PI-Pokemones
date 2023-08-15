@@ -39,7 +39,6 @@ const CardsPokemons = ({onstart}) => {
     }, [])
 
     const rederedData =  pokemon.id ? [pokemon] : pokemons
-    console.log(rederedData);
 
     const handlerOrder = (event) => {
         dispatch(orderPokemons(event.target.value));

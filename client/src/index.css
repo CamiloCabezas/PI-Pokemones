@@ -9,8 +9,8 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  height: 100vh; /* Ajusta el alto de la imagen al 100% del alto de la pantalla */
-  width: 100vw; /* Ajusta el ancho de la imagen al 100% del ancho de la pantalla */
+  height: 100vh; 
+  width: 100vw; 
 }
 
 code {
