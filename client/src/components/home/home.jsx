@@ -4,13 +4,22 @@ import  {getAllPokemons, orderPokemons, typesPokemons, getPokemonsByOrigin, clae
 import CardPokemons from "../Card/card";
 import styles from './Home.module.css';
 import axios from 'axios'
+import Paginacion from '../Paginacion/paginacion'
 
-const CardsPokemons = () => {
+const CardsPokemons = ({onstart}) => {
     const [ types, setTypes ] = useState([])
 
     const dispatch = useDispatch();
     const pokemons = useSelector(state => state.filteredPokemons)
     const pokemon = useSelector(state => state.pokemon)
+
+    //Paginacion
+
+    const [ page, setPage ] = useState(1);
+    const [ perPage, setPerPage ] = useState(12);
+
+    const max = Math.ceil(pokemons.length / perPage)
+  
 
     const getTypes = async () => {
         try {
@@ -23,12 +32,14 @@ const CardsPokemons = () => {
     }
 
     useEffect(() => {
+        onstart()
         dispatch(getAllPokemons());
         // dispatch(getPokeByName()) ;
         getTypes();
-    }, [dispatch])
+    }, [])
 
     const rederedData =  pokemon.id ? [pokemon] : pokemons
+    console.log(rederedData);
 
     const handlerOrder = (event) => {
         dispatch(orderPokemons(event.target.value));
@@ -80,7 +91,12 @@ const CardsPokemons = () => {
             
 
             {
-            rederedData.map((data, index) => (
+            rederedData
+            .slice(
+                (page - 1) * perPage,
+                (page - 1) * perPage + perPage
+                )
+            .map((data, index) => (
                 <div key={index} className={styles.cardContainer}>
                     <CardPokemons
                         id={data.id}
@@ -91,7 +107,13 @@ const CardsPokemons = () => {
                 </div>
             ))}
         </div>
-
+            {
+                rederedData.length !== 1
+                    ? <div>
+                        <Paginacion page={page} setPage={setPage} max={max}/>
+                     </div>
+                     : null
+            }
         </div>
     );
 

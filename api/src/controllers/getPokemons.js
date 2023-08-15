@@ -11,8 +11,8 @@ const getPokemons = async (req, res) => {
         const pokemonsDetails = await Promise.all(results.map(async (pok) => {
             const { data } = await axios.get(pok.url);
 
-            const { name, sprites, stats, weight, height, types } = data;
-            const id = parseInt(pok.url.split('/').slice(-2, -1)[0]);
+            const { id, name, sprites, stats, weight, height, types } = data;
+            // const id = parseInt(pok.url.split('/').slice(-2, -1)[0]);
 
             if (name) {
                 const pokemon = {
@@ -54,7 +54,7 @@ const getPokemons = async (req, res) => {
             }
         })
         
-        console.log(DbPokemons)
+     
 
         const allPokemons = [...pokemonsDetails,...pokemonDB]
 

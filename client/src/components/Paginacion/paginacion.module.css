@@ -1,0 +1,33 @@
+ .container {
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 20px;
+}
+
+  .previousPage,
+  .nextPage {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+ 
+  .previousPage:hover,
+  .nextPage:hover {
+    background-color: #d32f2f;
+  }
+  
+  .nose {
+    width: 40px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
