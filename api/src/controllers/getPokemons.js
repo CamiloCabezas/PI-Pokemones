@@ -12,7 +12,7 @@ const getPokemons = async (req, res) => {
             const { data } = await axios.get(pok.url);
 
             const { id, name, sprites, stats, weight, height, types } = data;
-            // const id = parseInt(pok.url.split('/').slice(-2, -1)[0]);
+
 
             if (name) {
                 const pokemon = {

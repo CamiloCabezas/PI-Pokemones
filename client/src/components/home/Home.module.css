@@ -7,7 +7,7 @@
   }
   
   .cardContainer {
-    width: 300px; /* Ancho fijo para mostrar 4 por fila con espaciado */
+    width: 400px; /* Ancho fijo para mostrar 4 por fila con espaciado */
     display: flex;
     justify-content: center; /* Centra horizontalmente */
   }
@@ -16,6 +16,10 @@
     max-width: 100%;
     height: auto;
   }
+
+.filterss {
+  padding: 1.5em;
+}
   
 
    

@@ -44,7 +44,6 @@ const SearchBar = () => {
       <div className={styles.search}>
         <Link
           onClick={() => {
-            // dispatch(claenState());
             dispatch(getPokeByName(nombre));
             setNombre('');
           }}

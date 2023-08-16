@@ -59,7 +59,7 @@ const CardsPokemons = ({onstart}) => {
 
     return (
         <div>
-            <div>
+            <div className={styles.filterss}>
             <select onChange={handlerOrder}>
                 <option value="A">Up Attack</option>
                 <option value="D">Down Attack</option>

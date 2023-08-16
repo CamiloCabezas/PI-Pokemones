@@ -9,31 +9,28 @@ const getPokById = async (req, res) => {
         const { idPokemon } = req.params;
 
         if(idPokemon.length > 3) {
-                // Intentar buscar el Pokémon en la base de datos por su ID
-        const pokemon = await Pokemon.findByPk(idPokemon, {
-            include: Type
-        });
+            const pokemon = await Pokemon.findByPk(idPokemon, {
+                include: Type
+            });
 
 
 
-        const pokemonDB = {
-            id: pokemon.id,
-            name : pokemon.name,
-            image : pokemon.image,
-            hp: pokemon.hp,
-            attack : pokemon.attack,
-            defense : pokemon.defense,
-            speed : pokemon.speed,
-            height : pokemon.height,
-            weight : pokemon.weight,
-            types : pokemon.Types.map((type) => type.name).join(',')
-        }
-        console.log(pokemon.Types.map((type) => type.name))
-    
-        if (pokemonDB) {
-            // Si se encuentra el Pokémon en la base de datos, enviarlo como respuesta
-            return res.status(200).json(pokemonDB);
-        }
+            const pokemonDB = {
+                id: pokemon.id,
+                name : pokemon.name,
+                image : pokemon.image,
+                hp: pokemon.hp,
+                attack : pokemon.attack,
+                defense : pokemon.defense,
+                speed : pokemon.speed,
+                height : pokemon.height,
+                weight : pokemon.weight,
+                types : pokemon.Types.map((type) => type.name).join(',')
+            }
+        
+            if (pokemonDB) {
+                return res.status(200).json(pokemonDB);
+            }
         }
   
 
