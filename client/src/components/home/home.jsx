@@ -36,7 +36,7 @@ const CardsPokemons = ({onstart}) => {
         dispatch(getAllPokemons());
         // dispatch(getPokeByName()) ;
         getTypes();
-    }, [])
+    }, [onstart, dispatch])
 
     const rederedData =  pokemon.id ? [pokemon] : pokemons
 

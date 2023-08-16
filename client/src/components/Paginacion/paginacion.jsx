@@ -29,8 +29,8 @@ const Paginacion = ({page, setPage, max}) => {
 
     const handlerClick = (n) =>{
         setPage(n)
+        setInput(n)
     }
-
 
 
 

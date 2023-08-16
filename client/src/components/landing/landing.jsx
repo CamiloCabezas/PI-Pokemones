@@ -12,18 +12,18 @@ const LandingPage = ({onstart}) => {
     useEffect(() => {
         dispatch(getAllPokemons());
 
-    }, [])
+    }, [dispatch])
 
     return(
         <div className={styles.container}>
-            {/* <div className={styles.image}>
-                <img src="https://es.web.img3.acsta.net/r_1280_720/pictures/14/07/18/10/57/567741.jpg"  />
-            </div> */}
             <div className={styles.containerSmall}>
                 <div className={styles.text}>
                 <h1>Welcome to Pokeland</h1>
                 </div>
                 <Link className={styles.boton }onClick={() => {onstart()}}to={'/home'}>START</Link>
+            </div>
+            <div className={styles.image}>
+                <img src="https://www.elheraldo.co/sites/default/files/styles/widht_760/public/articulo/2016/07/07/ash_y_pokemons_0.jpg?itok=yVrZII7i"  />
             </div>
         </div>
     )

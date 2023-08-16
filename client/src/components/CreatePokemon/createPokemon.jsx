@@ -206,7 +206,13 @@ const CreatePokemon = () => {
               />
             </div>
     
-            <button className={styles.button} type="submit">
+            <div className={styles.errorContainer}>
+              {Object.keys(error).length > 0 && (
+                <p className={styles.error}>Por favor, corrija los errores antes de crear el Pokémon.</p>
+              )}
+            </div>
+
+            <button className={styles.button} type="submit" disabled={Object.keys(error).length > 0}>
               New Pokemon
             </button>
           </form>

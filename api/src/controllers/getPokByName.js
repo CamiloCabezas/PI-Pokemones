@@ -30,7 +30,6 @@ const getPokByName = async (req, res) => {
                 weight: pokemon.weight,
                 types: pokemon.Types.map((type) => type.name).join(',')
             }
-            console.log(pokemon.Types.map((type) => type.name).join(','))
             return res.status(200).json(pokemondb);
         }
 
